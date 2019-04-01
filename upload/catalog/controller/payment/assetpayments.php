@@ -38,6 +38,9 @@ class ControllerPaymentAssetPayments extends Controller {
 			$country = 'UKR';
 		}
 		
+		//****Phone number fix****//
+		$phone = preg_replace('/[^\d]+/', '', $order_info['telephone']);
+		
 		$send_data = Array(
 			'TemplateId' => $this->config->get('assetpayments_type'),
             'MerchantInternalOrderId' => $this->session->data['order_id'],
@@ -46,7 +49,7 @@ class ControllerPaymentAssetPayments extends Controller {
 			'FirstName' => $order_info['payment_firstname']. ' ' . $order_info['payment_lastname'],
             'LastName' => $order_info['payment_lastname'],
             'Email' => $order_info['email'],
-            'Phone' => $order_info['telephone'],           
+            'Phone' => $phone,           
             'Address' => $order_info['payment_address_1'] . ' ' . $order_info['payment_address_2'] . ' ' . $order_info['payment_city'].' '.$order_info['payment_country'] . ' ' . $order_info['payment_postcode'],           
             'Country' => $order_info['payment_country'],           
             'Zip' => $order_info['payment_postcode'],           
