@@ -56,7 +56,7 @@ class ControllerPaymentAssetPayments extends Controller {
             'City' => $order_info['payment_city'],           
             'Region' => $order_info['payment_zone'],           
             'CountryISO' => $country, 
-			'Amount' => $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false),
+			'Amount' => $order_info['total'],
             'Currency' => $order_info['currency_code'],
 			'CustomMerchantInfo' => 'OpenCart: ' .''. VERSION,
             'AssetPaymentsKey' => $this->config->get('assetpayments_merchant'),
